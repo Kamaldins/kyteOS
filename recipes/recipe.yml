@@ -1,3 +1,10 @@
+---
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+name: kyteos
+description: KyteOS - Custom KDE Plasma experience with gaming, emulation, and productivity tools.
+base-image: quay.io/fedora-ostree-desktops/kinoite
+image-version: latest
+
 modules:
   - type: files
     files:
@@ -27,10 +34,15 @@ modules:
         - micro            # Terminal text editor
         - starship         # Shell prompt
 
+        # --- Qt6 dependencies for SilentSDDM ---
         - qt6-qtsvg
         - qt6-qtvirtualkeyboard
         - qt6-qtmultimedia
         - qt6-qtimageformats
+        
+        # --- Fonts ---
+        - papirus-icon-theme
+        - capitaine-cursors
     remove:
       packages:
         # --- Removing Firefox RPM in favor of Flatpak ---
