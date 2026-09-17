@@ -1,7 +1,7 @@
 name: iso
 on:
   workflow_run:
-    workflows: ["build"]
+    workflows: ["bluebuild"]
     types: [completed]
   workflow_dispatch:
 
