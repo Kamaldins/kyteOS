@@ -6,20 +6,12 @@ base-image: quay.io/fedora-ostree-desktops/kinoite
 image-version: "44"
 
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: /
-
   - type: dnf
     repos:
       copr:
-        - project: atim/starship
-          chroot: fedora-44-x86_64
-        - project: atim/lutris
-          chroot: fedora-44-x86_64
-        - project: atim/mangohud
-          chroot: fedora-44-x86_64
+        - atim/starship
+        - atim/lutris
+        - atim/mangohud
     install:
       packages:
         - waydroid
@@ -84,6 +76,11 @@ modules:
           - com.ranfdev.DistroShelf
           - it.mijorus.gearlever
       - scope: user
+
+  - type: files
+    files:
+      - source: system
+        destination: /
 
   - type: script
     scripts:
