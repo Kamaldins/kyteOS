@@ -1,0 +1,36 @@
+name: iso
+on:
+  workflow_run:
+    workflows: ["build"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  iso:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+      contents: read
+    steps:
+      - name: Build ISO
+        uses: jasonn3/build-container-installer@main
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/kyteos
+          version: latest
+          iso_name: kyteos
+      - name: Checksums
+        run: sha256sum *.iso | tee kyteos.SHA256SUMS
+      - name: R2 credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.R2_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          aws-region: auto
+      - name: Upload ISOs to R2
+        run: |
+          EP="https://828ff1cb2df92058a52307c9cb36f885.r2.cloudflarestorage.com"
+          aws s3 cp --endpoint-url "$EP" kyteos.SHA256SUMS s3://kyteos/iso/kyteos.SHA256SUMS
+          for f in *.iso; do
+            aws s3 cp --endpoint-url "$EP" "$f" "s3://kyteos/iso/$f"
+            aws s3 cp --endpoint-url "$EP" "$f" s3://kyteos/iso/kyteos-latest.iso
+          done
