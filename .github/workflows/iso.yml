@@ -19,7 +19,7 @@ jobs:
           image_repo: ghcr.io/kamaldins
           image_tag: latest
           image_signed: false
-          version: "42"
+          version: "44"
           iso_name: kyteos
           variant: KDE
       - name: Checksums
