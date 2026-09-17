@@ -9,46 +9,40 @@ modules:
   - type: files
     files:
       - source: system
-        destination: / # copies files/system/* into your image's root folder /
+        destination: /
 
   - type: dnf
     repos:
       copr:
-        - atim/starship
-        - atim/lutris
-        - atim/mangohud
+        - project: atim/starship
+          chroot: fedora-44-x86_64
+        - project: atim/lutris
+          chroot: fedora-44-x86_64
+        - project: atim/mangohud
+          chroot: fedora-44-x86_64
     install:
       packages:
-        # --- Core System & Windows Emulation Base ---
-        - waydroid         # Android subsystem
-        - wine             # Base Windows compatibility layer
+        - waydroid
+        - wine
         - wine-core
-        - gamemode         # Optimizes system for gaming
-        - mangohud         # FPS/Performance overlay
-        - podman           # Container engine (required for Distrobox)
-        - distrobox        # Mutable environments
-        
-        # --- System Management & Monitoring ---
-        - btop             # Resource monitor
-        - fastfetch        # System info
-        - micro            # Terminal text editor
-        - starship         # Shell prompt
-
-        # --- Qt6 dependencies for SilentSDDM ---
+        - gamemode
+        - mangohud
+        - podman
+        - distrobox
+        - btop
+        - fastfetch
+        - micro
+        - starship
         - qt6-qtsvg
         - qt6-qtvirtualkeyboard
         - qt6-qtmultimedia
         - qt6-qtimageformats
-        
-        # --- Fonts ---
         - papirus-icon-theme
         - capitaine-cursors
     remove:
       packages:
-        # --- Removing Firefox RPM in favor of Flatpak ---
         - firefox
         - firefox-langpacks
-        # --- Removing KDE Discover in favor of Bazaar ---
         - plasma-discover
         - plasma-discover-flatpak
         - plasma-discover-rpm-ostree
@@ -59,53 +53,37 @@ modules:
       - notify: true
         scope: system
         install:
-          # --- Browsers & Communication ---
           - org.mozilla.firefox
-          - io.github.vencord.Vesktop  # Discord alternative
+          - io.github.vencord.Vesktop
           - org.telegram.desktop
-
-          # --- App Store & Windows Emulation ---
-          - io.github.kolunmi.Bazaar   # Replaces Discover
-          - com.usebottles.bottles     # The best Windows app runner for Linux
-          - net.davidotek.pupgui2      # ProtonUp-Qt (manage Proton-GE for Steam)
+          - io.github.kolunmi.Bazaar
+          - com.usebottles.bottles
+          - net.davidotek.pupgui2
           - com.github.Matoking.protontricks
-
-          # --- Gaming Launchers ---
           - com.valvesoftware.Steam
           - com.heroicgameslauncher.hgl
           - net.lutris.Lutris
-
-          # --- Emulation ---
           - org.libretro.RetroArch
           - org.DolphinEmu.dolphin-emu
-          - io.github.shiiion.primehack # Metroid Prime Dolphin fork
-          - org.pcsx2.PCSX2            # PS2
-          - net.rpcs3.RPCS3            # PS3
-          - org.ppsspp.PPSSPP          # PSP
-          - org.duckstation.DuckStation # PS1
-          - org.xemu.xemu              # Original Xbox
-          - org.sudachi_emu.sudachi    # Switch
-
-          # --- Productivity & Office ---
+          - io.github.shiiion.primehack
+          - org.pcsx2.PCSX2
+          - net.rpcs3.RPCS3
+          - org.ppsspp.PPSSPP
+          - org.duckstation.DuckStation
+          - org.xemu.xemu
+          - org.sudachi_emu.sudachi
           - org.onlyoffice.desktopeditors
-
-          # --- Media & Entertainment ---
-          - io.github.diegopvlk.Cine   # Clean MPV-based video player
-          - xyz.nokarin.aqloss         # Rust audio player (bit-perfect)
-          - de.haeckerfelix.Shortwave  # Internet Radio
-          - com.transmissionbt.Transmission # Torrents
-
-          # --- Creativity ---
-          - org.kde.krita              # Professional paint app
-
-          # --- System Management, Security & Utilities ---
-          - com.github.tchx84.Flatseal # Flatpak permissions management
-          - org.gufw.Gufw              # Firewall configuration
-          - io.github.flattool.Warehouse # Flatpak manager/backup
-          - com.ranfdev.DistroShelf    # Distrobox GUI manager
-          - it.mijorus.gearlever       # AppImage manager
-          
-      - scope: user # Also add Flathub user repo, but no user packages
+          - io.github.diegopvlk.Cine
+          - xyz.nokarin.aqloss
+          - de.haeckerfelix.Shortwave
+          - com.transmissionbt.Transmission
+          - org.kde.krita
+          - com.github.tchx84.Flatseal
+          - org.gufw.Gufw
+          - io.github.flattool.Warehouse
+          - com.ranfdev.DistroShelf
+          - it.mijorus.gearlever
+      - scope: user
 
   - type: script
     scripts:
