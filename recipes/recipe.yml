@@ -6,40 +6,6 @@ base-image: quay.io/fedora-ostree-desktops/kinoite
 image-version: "44"
 
 modules:
-  - type: dnf
-    repos:
-      copr:
-        - atim/starship
-        - atim/lutris
-        - atim/mangohud
-    install:
-      packages:
-        - waydroid
-        - wine
-        - wine-core
-        - gamemode
-        - mangohud
-        - podman
-        - distrobox
-        - btop
-        - fastfetch
-        - micro
-        - starship
-        - qt6-qtsvg
-        - qt6-qtvirtualkeyboard
-        - qt6-qtmultimedia
-        - qt6-qtimageformats
-        - papirus-icon-theme
-        - capitaine-cursors
-    remove:
-      packages:
-        - firefox
-        - firefox-langpacks
-        - plasma-discover
-        - plasma-discover-flatpak
-        - plasma-discover-rpm-ostree
-        - plasma-discover-packagekit
-
   - type: default-flatpaks
     configurations:
       - notify: true
