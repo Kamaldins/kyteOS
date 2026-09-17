@@ -1,5 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=KyteOS First Boot Setup
-Exec=/bin/bash /usr/local/bin/kyteos-firstboot.sh
+Exec=/usr/bin/kyteos-firstboot
 X-KDE-autostart-phase=2
+Hidden=false

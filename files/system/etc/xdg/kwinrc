@@ -6,12 +6,6 @@ OpenGLIsUnsafe=false
 BorderlessMaximizedWindows=true
 Placement=Centered
 FocusStealingPreventionLevel=1
-AutoRaise=false
-DelayFocusInterval=300
-
-[TabBox]
-ShowTabBox=true
 
 [Plugins]
 blurEnabled=true
-kwin4_effect_translucencyEnabled=true

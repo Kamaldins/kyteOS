@@ -9,4 +9,4 @@ ANSI_COLOR="0;38;2;60;110;180"
 LOGO=kyteos
 CPE_NAME="cpe:/o:kyteos:kyteos:1.0"
 HOME_URL="https://kyte.kamaldins.com"
-BUG_REPORT_URL="https://github.com/valters/kyteos/issues"
+BUG_REPORT_URL="https://github.com/Kamaldins/kyteOS/issues"
