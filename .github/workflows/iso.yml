@@ -15,11 +15,15 @@ jobs:
       - name: Build ISO
         uses: jasonn3/build-container-installer@main
         with:
-          image: ghcr.io/${{ github.repository_owner }}/kyteos
-          version: latest
+          image_name: kyteos
+          image_repo: ghcr.io/kamaldins
+          image_tag: latest
+          image_signed: false
+          version: "42"
           iso_name: kyteos
+          variant: KDE
       - name: Checksums
-        run: sha256sum *.iso | tee kyteos.SHA256SUMS
+        run: sha256sum *.iso | tee kyteos.SHA256SUMS || true
       - name: R2 credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -29,6 +33,7 @@ jobs:
       - name: Upload ISOs to R2
         run: |
           EP="https://828ff1cb2df92058a52307c9cb36f885.r2.cloudflarestorage.com"
+          ls -la *.iso || { echo "No ISO produced"; exit 1; }
           aws s3 cp --endpoint-url "$EP" kyteos.SHA256SUMS s3://kyteos/iso/kyteos.SHA256SUMS
           for f in *.iso; do
             aws s3 cp --endpoint-url "$EP" "$f" "s3://kyteos/iso/$f"
