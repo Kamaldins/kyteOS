@@ -3,7 +3,7 @@
 name: kyteos
 description: KyteOS - Custom KDE Plasma experience with gaming, emulation, and productivity tools.
 base-image: quay.io/fedora-ostree-desktops/kinoite
-image-version: latest
+image-version: "44"
 
 modules:
   - type: files
